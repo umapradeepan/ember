@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ember | IVF & Fertility Digital Marketing</title>
+  <style>
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; }
+
+    /* Navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 5%;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a3c6e;
+    }
+    .logo span { color: #e63946; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-weight: 500;
+      color: #555;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: #e63946; }
+    .nav-cta {
+      background: #e63946;
+      color: #fff !important;
+      padding: 0.6rem 1.5rem;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .nav-cta:hover { background: #c62d3a; }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #1a3c6e 0%, #2d5a9e 100%);
+      color: #fff;
+      padding: 6rem 5%;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: #e63946;
+      color: #fff;
+      padding: 1rem 2.5rem;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: transform 0.2s, background 0.3s;
+    }
+    .btn-primary:hover {
+      background: #c62d3a;
+      transform: translateY(-2px);
+    }
+
+    /* Section Styling */
+    section { padding: 5rem 5%; }
+    .section-title {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .section-title h2 {
+      font-size: 2.2rem;
+      color: #1a3c6e;
+      margin-bottom: 0.5rem;
+    }
+    .section-title p {
+      color: #666;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* About Us */
+    .about-section { background: #f8f9fc; }
+    .about-content {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 1000px;
+      margin: 3rem auto 0;
+    }
+    .about-photo {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: #dde3ed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .about-photo svg {
+      width: 160px;
+      height: 160px;
+      fill: #a0aec0;
+    }
+    .about-text h3 {
+      font-size: 1.5rem;
+      color: #1a3c6e;
+      margin-bottom: 0.3rem;
+    }
+    .about-text .role {
+      color: #e63946;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+    .about-text p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .service-card {
+      border: 1px solid #e8ecf3;
+      border-radius: 10px;
+      padding: 2.5rem 2rem;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .service-card:hover {
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+    .service-card h3 {
+      color: #1a3c6e;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 3px solid #e63946;
+      display: inline-block;
+    }
+    .service-card p { color: #555; font-size: 0.95rem; line-height: 1.7; }
+
+    /* Stats/Results Banner */
+    .stats-banner {
+      background: linear-gradient(135deg, #1a3c6e, #2d5a9e);
+      color: #fff;
+      text-align: center;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .stat-item h3 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+    }
+    .stat-item p { opacity: 0.85; }
+
+    /* Contact / Form Section */
+    .contact-section {
+      background: #f8f9fc;
+      text-align: center;
+    }
+    .contact-section h2 {
+      font-size: 2.2rem;
+      color: #1a3c6e;
+      margin-bottom: 0.5rem;
+    }
+    .contact-section > p {
+      color: #555;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .form-container {
+      max-width: 700px;
+      margin: 0 auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .form-container iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+
+    /* Footer */
+    footer {
+      background: #1a2a4a;
+      color: #ccc;
+      padding: 3rem 5%;
+      text-align: center;
+    }
+    footer p { margin-bottom: 1rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
+    .footer-links a { color: #aaa; transition: color 0.3s; }
+    .footer-links a:hover { color: #fff; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .nav-links { display: none; }
+      .about-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .about-photo { width: 200px; height: 200px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">Ember<span> We help fertility clinics grow </span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Performance Marketing For IVF & Fertility Practices</h1>
+    <p>Increase patient volume through innovative digital marketing strategies designed specifically for fertility clinics.</p>
+    <a href="#contact" class="btn-primary">Request a Strategy Consultation</a>
+  </section>
+
+  <!-- 1) About Us -->
+  <section class="about-section" id="about">
+    <div class="section-title">
+      <h2>About Us</h2>
+      <p>Meet the people behind your growth strategy</p>
+    </div>
+    <div class="about-content">
+      <div class="about-photo">
+        <img src="profile_pic.jpg" alt="Profile photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+      </div>
+      <div class="about-text">
+        <h3>Aria Shah</h3>
+        <p class="role">Founder & Fertility Enthusiast</p>
+        <p>I am Aria! Based in San Francisco, California,  I specialize in helping IVF and fertility practices reach the patients who need them most.</p>
+        <p>My approach combines data-driven strategy with a deep understanding of the fertility space — because every patient journey matters, and every practice deserves to grow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2) Services -->
+  <section id="services">
+    <div class="section-title">
+      <h2>Services</h2>
+      <p>Digital marketing success from every angle</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>PPC Advertising</h3>
+        <p>Drive prospective patients to your website and convert qualified leads into new patients. We personalize each pay-per-click campaign to target people actively searching for IVF & fertility services, maximizing your budget for high ROI.</p>
+      </div>
+      <div class="service-card">
+        <h3>SEO</h3>
+        <p>If your site is not highly ranked, prospective patients will not find you. Most searches never make it past the first page. We drive organic traffic to your website and convert those leads into loyal patients.</p>
+      </div>
+      <div class="service-card">
+        <h3>Facebook & Social Ads</h3>
+        <p>Tap into millions of users on social platforms. We use segmentation to identify prospective patients based on location, age, gender, and interests to deliver high conversion rates and qualified leads.</p>
+      </div>
+      <div class="service-card">
+        <h3>Conversion Rate Optimization</h3>
+        <p>Getting traffic but not enough appointments? A strong CRO strategy increases the quality of your leads and makes the most out of the traffic you're already receiving.</p>
+      </div>
+      <div class="service-card">
+        <h3>Analytics & Reporting</h3>
+        <p>Know which campaigns drive results, which offers work, and which pages need optimization. We provide complete transparency with access to all your data, dashboards, and reports.</p>
+      </div>
+      <div class="service-card">
+        <h3>Web Design</h3>
+        <p>Make sure your website loads quickly, is easy to navigate, and is responsive across all devices. First impressions go far — we ensure visitors find what they need and convert into patients.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3) Results -->
+  <section class="stats-banner" id="results">
+    <div class="section-title" style="margin-bottom: 3rem;">
+      <h2 style="color: #fff;">Results</h2>
+      <p style="color: rgba(255,255,255,0.8);">Numbers that speak for themselves</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3>300%</h3>
+        <p>Average increase in leads</p>
+      </div>
+      <div class="stat-item">
+        <h3>150+</h3>
+        <p>Healthcare clients served</p>
+      </div>
+      <div class="stat-item">
+        <h3>10M+</h3>
+        <p>Patients reached annually</p>
+      </div>
+      <div class="stat-item">
+        <h3>95%</h3>
+        <p>Client retention rate</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4) Contact Us with Google Form -->
+  <section class="contact-section" id="contact">
+    <h2>Contact Us</h2>
+    <p>Ready to grow your fertility practice? Fill out the form below and we'll get back to you within 24 hours.</p>
+    <div class="form-container">
+      <!--
+        REPLACE the src URL below with your actual Google Form embed URL.
+        To get it: Open your Google Form → click "Send" → click the embed icon (<>) → copy the src URL
+        It will look like: https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true
+      -->
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLScHIngcv1wmTG8N_t1HVCzAHmWFZENyc_VQ2UWRKF7LhXVsuw/viewform?embedded=true"
+        title="Contact Form"
+        loading="lazy">
+        Loading…
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#results">Results</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p>&copy; 2025 Ember. All rights reserved.</p>
+    <p style="font-size: 0.85rem; opacity: 0.7;">IVF, Surrogacy & Fertility Digital Marketing</p>
+  </footer>
+
+</body>
+</html>
