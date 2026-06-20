@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="100%" aria-hidden="true">
+  <!-- Two people having a conversation, speech bubbles with hearts -->
+  <circle cx="60" cy="60" r="18" fill="#F38BA0" opacity=".4"/>
+  <circle cx="340" cy="270" r="26" fill="#F4D27A" opacity=".5"/>
+
+  <!-- person 1 -->
+  <g transform="translate(70 130)">
+    <circle cx="0" cy="0" r="34" fill="#FFD9B8"/>
+    <path d="M-30 0 Q-30 -32 0 -32 Q30 -32 30 0 Q30 -18 0 -18 Q-30 -18 -30 0" fill="#2B2622"/>
+    <circle cx="-10" cy="3" r="2.2" fill="#2B2622"/><circle cx="10" cy="3" r="2.2" fill="#2B2622"/>
+    <path d="M-10 13 Q0 19 10 13" stroke="#2B2622" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <circle cx="-18" cy="10" r="3.5" fill="#F38BA0" opacity=".55"/>
+    <circle cx="18" cy="10" r="3.5" fill="#F38BA0" opacity=".55"/>
+    <path d="M-34 110 L-34 50 Q-34 28 0 28 Q34 28 34 50 L34 110 Z" fill="#C8D5B9"/>
+  </g>
+
+  <!-- person 2 -->
+  <g transform="translate(310 150)">
+    <circle cx="0" cy="0" r="32" fill="#FFCBA0"/>
+    <path d="M-28 0 Q-28 -28 0 -32 Q30 -28 30 5 Q26 -12 0 -10 Q-26 -12 -28 0" fill="#5b3a2a"/>
+    <circle cx="-9" cy="3" r="2.2" fill="#2B2622"/><circle cx="9" cy="3" r="2.2" fill="#2B2622"/>
+    <path d="M-9 13 Q0 18 9 13" stroke="#2B2622" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <circle cx="-16" cy="10" r="3.5" fill="#F38BA0" opacity=".55"/>
+    <circle cx="16" cy="10" r="3.5" fill="#F38BA0" opacity=".55"/>
+    <path d="M-32 110 L-32 50 Q-32 28 0 28 Q32 28 32 50 L32 110 Z" fill="#D9C2F0"/>
+  </g>
+
+  <!-- speech bubble -->
+  <g transform="translate(180 80)">
+    <rect x="0" y="0" width="120" height="60" rx="20" fill="#fff" stroke="#2B2622" stroke-width="3"/>
+    <path d="M30 60 L 24 76 L 50 60 Z" fill="#fff" stroke="#2B2622" stroke-width="3"/>
+    <path d="M40 30 q -7 -7 0 -14 q 7 7 14 0 q 7 7 0 14 q -7 7 -14 0 z" fill="#F38BA0"/>
+    <path d="M75 30 q -5 -5 0 -10 q 5 5 10 0 q 5 5 0 10 q -5 5 -10 0 z" fill="#F4D27A"/>
+    <path d="M100 30 q -4 -4 0 -8 q 4 4 8 0 q 4 4 0 8 q -4 4 -8 0 z" fill="#7BA67B"/>
+  </g>
+</svg>

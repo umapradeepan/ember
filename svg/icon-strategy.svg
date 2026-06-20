@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="60" height="60" aria-hidden="true">
+  <!-- compass/strategy: brain-like swirl -->
+  <circle cx="30" cy="30" r="22" fill="#E2EBD3" stroke="#2B2622" stroke-width="2.5"/>
+  <path d="M30 14 L 33 27 L 46 30 L 33 33 L 30 46 L 27 33 L 14 30 L 27 27 Z" fill="#7BA67B"/>
+  <circle cx="30" cy="30" r="4" fill="#F4D27A"/>
+</svg>

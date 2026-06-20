@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="60" height="60" aria-hidden="true">
+  <!-- magnifying glass with heart -->
+  <circle cx="26" cy="26" r="16" fill="#FAD9C7" stroke="#2B2622" stroke-width="2.5"/>
+  <path d="M26 22 q -5 -5 0 -10 q 5 5 10 0 q 5 5 0 10 q -5 5 -10 0 z" fill="#F38BA0"/>
+  <line x1="38" y1="38" x2="52" y2="52" stroke="#2B2622" stroke-width="4" stroke-linecap="round"/>
+</svg>
