@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140" width="100%" aria-hidden="true">
+  <!-- pot -->
+  <path d="M30 95 L 90 95 L 82 130 Q 60 138 38 130 Z" fill="#F5B7A8"/>
+  <ellipse cx="60" cy="95" rx="30" ry="6" fill="#E89B8A"/>
+  <!-- leaves -->
+  <path d="M60 90 Q 35 60 25 30 Q 45 45 60 80" fill="#7BA67B"/>
+  <path d="M60 90 Q 85 60 95 30 Q 75 45 60 80" fill="#C8D5B9"/>
+  <path d="M60 90 Q 50 50 55 20 Q 65 50 60 80" fill="#9BC196"/>
+  <!-- face -->
+  <circle cx="52" cy="115" r="1.6" fill="#2B2622"/>
+  <circle cx="68" cy="115" r="1.6" fill="#2B2622"/>
+  <path d="M53 122 Q60 126 67 122" stroke="#2B2622" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  <circle cx="44" cy="120" r="2.5" fill="#F38BA0" opacity=".55"/>
+  <circle cx="76" cy="120" r="2.5" fill="#F38BA0" opacity=".55"/>
+</svg>
