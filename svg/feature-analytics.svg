@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="100%" aria-hidden="true">
+  <!-- Dashboard with chart going up -->
+  <circle cx="60" cy="260" r="22" fill="#D9C2F0" opacity=".6"/>
+  <circle cx="350" cy="60" r="18" fill="#F38BA0" opacity=".5"/>
+
+  <rect x="40" y="50" width="320" height="220" rx="20" fill="#fff" stroke="#2B2622" stroke-width="3"/>
+  <!-- top bar -->
+  <rect x="40" y="50" width="320" height="34" rx="20" fill="#FDE8DC"/>
+  <circle cx="64" cy="67" r="5" fill="#F38BA0"/>
+  <circle cx="80" cy="67" r="5" fill="#F4D27A"/>
+  <circle cx="96" cy="67" r="5" fill="#7BA67B"/>
+  <!-- chart axis -->
+  <line x1="70" y1="240" x2="330" y2="240" stroke="#2B2622" stroke-width="2"/>
+  <line x1="70" y1="120" x2="70" y2="240"  stroke="#2B2622" stroke-width="2"/>
+  <!-- chart line -->
+  <polyline points="80,220 130,200 170,180 220,150 270,140 320,110" fill="none" stroke="#F38BA0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="80"  cy="220" r="5" fill="#2B2622"/>
+  <circle cx="130" cy="200" r="5" fill="#2B2622"/>
+  <circle cx="170" cy="180" r="5" fill="#2B2622"/>
+  <circle cx="220" cy="150" r="5" fill="#2B2622"/>
+  <circle cx="270" cy="140" r="5" fill="#2B2622"/>
+  <circle cx="320" cy="110" r="6" fill="#F4D27A" stroke="#2B2622" stroke-width="2"/>
+  <!-- sparkle -->
+  <path d="M330 95 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 l5 -2 z" fill="#F4D27A"/>
+</svg>
