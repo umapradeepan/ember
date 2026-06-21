@@ -53,8 +53,19 @@
       </button>
       <nav class="nav-links" id="nav-links">
         <a href="#solutions">What We Do</a>
-        <a href="#approach">Our Approach</a>
-        <a href="#blog">Blog</a>
+        <div class="nav-item">
+          <button type="button" class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Products
+            <svg class="nav-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="dropdown" role="menu">
+            <a href="#feature-surrogates" role="menuitem">Surrogate Recruiting</a>
+            <a href="#feature-parents"    role="menuitem">Intended Parents Recruiting</a>
+            <a href="#feature-tech"       role="menuitem">Case Management Tech</a>
+          </div>
+        </div>
         <a href="#contact" class="btn btn-primary">
           <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -92,40 +103,57 @@
   <section class="section" id="solutions">
     <div class="section-head">
       <span class="section-eyebrow">What we do</span>
-      <h2>Built for the fertility space.</h2>
-      <p>Three services, one focus: more cases through your door and a smoother way to run them.</p>
+      <h2>Built for surrogacy agencies.</h2>
+      <p>Three modules with the goal of helping you sustainably scale your agency operations.</p>
     </div>
     <div class="container">
       <div class="pillars">
+                <a class="pillar" href="#feature-surrogates">
+          <div class="pillar-icon"><img src="svg/card-surrogate.svg" alt=""></div>
+          <h3>Surrogate Recruiting</h3>
+          <p>A steady pipeline of pre-screened, mission-aligned surrogate applicants — so your team is matching, not chasing.</p>
+        </a>
         <a class="pillar" href="#feature-parents">
           <div class="pillar-icon"><img src="svg/card-parents.svg" alt=""></div>
-          <h3>Recruit Intended Parents</h3>
-          <p>We bring qualified intended parents to your agency through targeted campaigns built for the way families actually search.</p>
-        </a>
-        <a class="pillar" href="#feature-surrogates">
-          <div class="pillar-icon"><img src="svg/card-surrogate.svg" alt=""></div>
-          <h3>Recruit Surrogates</h3>
-          <p>A steady pipeline of pre-screened, mission-aligned surrogate applicants — so your team is matching, not chasing.</p>
+          <h3>Intended Parents Recruiting</h3>
+          <p>Qualified intended parents brought to your agency through targeted campaigns built for the way families actually search.</p>
         </a>
         <a class="pillar" href="#feature-tech">
           <div class="pillar-icon"><img src="svg/icon-chart.svg" alt=""></div>
-          <h3>Tech for Case Management</h3>
-          <p>Automate your recruiting funnel and case workflows with software your coordinators will actually love using.</p>
+          <h3>Case Management Tech</h3>
+          <p>Custom automations for the full case-management journey — contracts, medical coordination, milestone tracking, and disbursements — so your team can focus on people, not paperwork.</p>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ============ FEATURE 1: IP RECRUITING ============ -->
+  <!-- ============ FEATURE 1: SURROGATE RECRUITING ============ -->
+  <section class="feature reverse" id="feature-surrogates">
+    <div class="feature-text">
+      <span class="section-eyebrow">Surrogate recruiting</span>
+      <h2>A surrogate pipeline that doesn’t dry up.</h2>
+      <p>We build long-term engines that bring in qualified, ready-to-screen surrogate applicants every single month — not just when you run a sprint.</p>
+      <ul class="feature-list">
+        <li>Always-on multi-channel surrogate recruiting campaigns</li>
+        <li>AI pre-screening tools for age, BMI, pregnancy history, and state eligibility</li>
+        <li>Surrogate candidate tracker with automatic text and email follow-ups</li>
+      </ul>
+      <a href="#contact" class="btn-ghost">Learn more</a>
+    </div>
+    <div class="feature-visual sage">
+      <img src="svg/feature-conversion.svg" alt="Cartoon of two people having a warm conversation">
+    </div>
+  </section>
+  <!-- ============ FEATURE 2: IP RECRUITING ============ -->
   <section class="feature" id="feature-parents">
     <div class="feature-text">
       <span class="section-eyebrow">Intended Parent recruiting</span>
       <h2>Meet the right families, at the right moment.</h2>
       <p>We design and run paid campaigns, content, and funnels built specifically for the intended parent journey — from “considering surrogacy” to signed agreement.</p>
       <ul class="feature-list">
-        <li>Paid search & social tuned for the fertility funnel</li>
-        <li>Landing pages and lead flows that actually convert</li>
-        <li>HIPAA-aware audience targeting and creative</li>
+        <li>Always-on multi-channel intended parent recruiting campaigns</li>
+        <li>Data collection on financial readiness, embryo status, timeline, and geographic location</li>
+        <li>Intended parent tracker with automatic text and email follow-ups</li>
       </ul>
       <a href="#contact" class="btn-ghost">Learn more</a>
     </div>
@@ -134,122 +162,21 @@
     </div>
   </section>
 
-  <!-- ============ FEATURE 2: SURROGATE RECRUITING ============ -->
-  <section class="feature reverse" id="feature-surrogates">
-    <div class="feature-text">
-      <span class="section-eyebrow">Surrogate recruiting</span>
-      <h2>A surrogate pipeline that doesn’t dry up.</h2>
-      <p>We build long-term engines that bring in qualified, ready-to-screen surrogate applicants every single month — not just when you run a sprint.</p>
-      <ul class="feature-list">
-        <li>Always-on multi-channel recruiting campaigns</li>
-        <li>Pre-screening flows that filter for eligibility</li>
-        <li>Lifecycle nurture so warm leads don’t go cold</li>
-      </ul>
-      <a href="#contact" class="btn-ghost">Learn more</a>
-    </div>
-    <div class="feature-visual sage">
-      <img src="svg/feature-conversion.svg" alt="Cartoon of two people having a warm conversation">
-    </div>
-  </section>
-
   <!-- ============ FEATURE 3: TECH ============ -->
   <section class="feature" id="feature-tech">
     <div class="feature-text">
-      <span class="section-eyebrow">Tech & automation</span>
+      <span class="section-eyebrow">Case Management Tech</span>
       <h2>Automate the busywork. Keep the human parts.</h2>
-      <p>Custom-built software for fertility agencies — applicant tracking, case management, document workflows, and dashboards your team will actually open.</p>
+      <p>Custom software built for surrogacy agencies to run everything <em>after</em> the match — contracts, medical coordination, milestone tracking, and disbursements, all in one place.</p>
       <ul class="feature-list">
-        <li>End-to-end recruiting funnel automation</li>
-        <li>Case management built for surrogacy & egg donation</li>
-        <li>Real dashboards on source, pipeline, and outcomes</li>
+        <li><b>Contract and document workflows</b> including e-signatures, escrow setup, and signing deadlines that track themselves</li>
+        <li><b>Medical and appointment coordination</b> including clinic scheduling, records routing, and milestone reminders sent automatically</li>
+        <li><b>Compensation disbursements and expense tracking</b> so payments never slip</li>
       </ul>
       <a href="#contact" class="btn-ghost">Learn more</a>
     </div>
     <div class="feature-visual lilac">
       <img src="svg/feature-analytics.svg" alt="Cartoon dashboard with a chart trending up">
-    </div>
-  </section>
-
-  <!-- ============ PROCESS ============ -->
-  <section class="process" id="approach">
-    <div class="section-head">
-      <span class="section-eyebrow">How it works</span>
-      <h2>From intro call to compounding growth.</h2>
-      <p>A simple, three-step engagement designed for fertility agencies.</p>
-    </div>
-    <div class="container">
-      <div class="steps">
-        <article class="step">
-          <div class="step-num">01</div>
-          <h3>Discovery</h3>
-          <p>We learn your agency, your team, your numbers, and the realities of your market.</p>
-        </article>
-        <article class="step">
-          <div class="step-num">02</div>
-          <h3>Strategy</h3>
-          <p>A clear plan for recruiting, tech, and budget — built around the metrics that actually matter.</p>
-        </article>
-        <article class="step">
-          <div class="step-num">03</div>
-          <h3>Growth</h3>
-          <p>We execute, measure, and refine — month over month, quarter over quarter.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ BLOG ============ -->
-  <section class="section blog" id="blog">
-    <div class="section-head">
-      <span class="section-eyebrow">From the blog</span>
-      <h2>Notes from the fertility growth front lines.</h2>
-      <p>Field-tested ideas on recruiting, tech, and running a modern fertility agency.</p>
-    </div>
-    <div class="container">
-      <div class="blog-grid">
-
-        <article class="blog-card">
-          <div class="blog-art b1">
-            <img src="svg/blog-funnel.svg" alt="">
-          </div>
-          <h4>Why your surrogate funnel is leaking</h4>
-          <p>Most agencies lose qualified surrogates between the first form and the first call. Here’s what to check, and what to fix first.</p>
-          <a href="#" class="btn-ghost">Read more</a>
-        </article>
-
-        <article class="blog-card">
-          <div class="blog-art b2">
-            <img src="svg/blog-family.svg" alt="">
-          </div>
-          <h4>Recruiting intended parents in 2026</h4>
-          <p>How families are searching, what they want to see, and the channels that are quietly outperforming for fertility agencies this year.</p>
-          <a href="#" class="btn-ghost">Read more</a>
-        </article>
-
-        <article class="blog-card">
-          <div class="blog-art b3">
-            <img src="svg/blog-laptop.svg" alt="">
-          </div>
-          <h4>Building a tech stack your coordinators won’t hate</h4>
-          <p>A practical guide to case-management tooling — what to buy, what to build, and where automation actually saves you time.</p>
-          <a href="#" class="btn-ghost">Read more</a>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ TESTIMONIAL ============ -->
-  <section class="section testimonial-wrap">
-    <div class="testimonial">
-      <img src="svg/sprig.svg"  alt="" class="testimonial-decor l">
-      <img src="svg/flower.svg" alt="" class="testimonial-decor r">
-      <span class="section-eyebrow">What partners say</span>
-      <blockquote>Ember took our recruiting from a constant scramble to a system we can actually plan around — and ours feels like it’s finally working the way we always hoped it could.</blockquote>
-      <div class="testimonial-meta">
-        <span class="name">Placeholder Name</span>
-        <span class="role">Director, Placeholder Fertility</span>
-      </div>
     </div>
   </section>
 
@@ -260,13 +187,7 @@
       <div class="contact-copy">
         <span class="section-eyebrow">Say hello</span>
         <h2>Let’s have a chat.</h2>
-        <p>Tell us a little about your agency and what you’re hoping to grow. We’ll get back to you within one business day — promise.</p>
-
-        <div class="contact-art">
-          <img src="svg/mailbox.svg"  alt="" class="contact-mailbox">
-          <img src="svg/envelope.svg" alt="" class="contact-envelope">
-          <img src="svg/sprig.svg"    alt="" class="contact-sprig">
-        </div>
+        <p>Tell us a little about your agency and what we can do to help you accomplish your goals.</p>
       </div>
 
       <form class="contact-form" action="https://api.staticforms.dev/submit" method="POST">
@@ -276,27 +197,27 @@
 
         <div class="form-row">
           <label class="field">
-            <span>Your name</span>
-            <input type="text" name="name" required placeholder="Jane Coordinator">
+            <span>Name</span>
+            <input type="text" name="name" required placeholder="First Last">
           </label>
           <label class="field">
             <span>Email</span>
-            <input type="email" name="email" required placeholder="jane@youragency.com">
+            <input type="email" name="email" required placeholder="name@example.com">
           </label>
         </div>
 
         <label class="field">
-          <span>Agency</span>
-          <input type="text" name="agency" placeholder="Your fertility brand">
+          <span>Business</span>
+          <input type="text" name="Company" placeholder="Your Company Name">
         </label>
 
         <label class="field">
           <span>What can we help with?</span>
           <select name="interest">
-            <option>Recruiting intended parents</option>
-            <option>Recruiting surrogates</option>
-            <option>Case-management tech</option>
-            <option>A bit of everything</option>
+            <option>Surrogate Recruiting</option>
+            <option>Intended Parents Recruiting</option>
+            <option>Case Management Tech</option>
+            <option>Other</option>
           </select>
         </label>
 
@@ -310,7 +231,7 @@
             <line x1="22" y1="2" x2="11" y2="13"/>
             <polygon points="22 2 15 22 11 13 2 9 22 2"/>
           </svg>
-          <span class="contact-submit-label">Send it over</span>
+          <span class="contact-submit-label">Submit</span>
         </button>
 
         <p class="form-success" hidden>✨ Got it! We’ll be in touch within one business day.</p>
@@ -329,35 +250,26 @@
             <img src="svg/logo.svg" alt="" class="brand-mark">
             <span class="brand-name">ember</span>
           </a>
-          <p>Recruiting and tech for fertility brands.</p>
         </div>
         <div class="footer-col">
-          <h4>Solutions</h4>
+          <h4>Products</h4>
           <ul>
-            <li><a href="#solutions">Intended Parent recruiting</a></li>
-            <li><a href="#solutions">Surrogate recruiting</a></li>
-            <li><a href="#solutions">Tech & automation</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#approach">Approach</a></li>
-            <li><a href="#results">Results</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#solutions">Surrogate Recruiting</a></li>
+            <li><a href="#solutions">Intended Parents Recruiting</a></li>
+            <li><a href="#solutions">Case Management Tech</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
-            <li><a href="#contact">Book a call</a></li>
+            <li><a href="#contact">Book a Call</a></li>
             <li><a href="mailto:info@embersurrogacy.com">info@embersurrogacy.com</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>©2026 Ember. All rights reserved.</span>
-        <span>Recruiting · Tech · Fertility</span>
+        <span>Recruiting & Tech for Surrogacy Agencies</span>
       </div>
     </div>
   </footer>
