@@ -3,9 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ember — recruiting and tech for surrogacy agencies.">
-  <title>Ember</title>
+  <title>Ember — Recruiting & Tech for Surrogacy Agencies</title>
+  <meta name="description" content="Ember helps surrogacy agencies grow — recruiting intended parents and surrogates, plus tech to automate your case management and recruiting funnel.">
+
+  <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="svg/logo.svg">
+  <link rel="apple-touch-icon" href="svg/logo.svg">
+  <meta name="theme-color" content="#FBF4EA">
+
+  <!-- Open Graph (Facebook, LinkedIn, iMessage, Slack, WhatsApp…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ember">
+  <meta property="og:title" content="Ember — Recruiting & Tech for Surrogacy Agencies">
+  <meta property="og:description" content="The growth partner surrogacy agencies have been waiting for. We bring in intended parents and surrogates, and give your team the tech to run every case.">
+  <meta property="og:image" content="svg/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ember — Recruiting and tech for surrogacy agencies">
+  <meta property="og:url" content="https://embersurrogacy.com/">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ember — Recruiting & Tech for Surrogacy Agencies">
+  <meta name="twitter:description" content="The growth partner surrogacy agencies have been waiting for.">
+  <meta name="twitter:image" content="svg/og-image.svg">
+  <meta name="twitter:image:alt" content="Ember — Recruiting and tech for surrogacy agencies">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,400;1,600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -245,7 +269,11 @@
         </div>
       </div>
 
-      <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.form-success').hidden = false; this.reset();">
+      <form class="contact-form" action="https://api.staticforms.dev/submit" method="POST">
+        <input type="hidden" name="apiKey"  value="sf_3a6157e080d62e9879505751">
+        <input type="hidden" name="subject" value="Ember Surrogacy Website Contact Us Form Submission">
+        <input type="text" name="honeypot" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none" aria-hidden="true">
+
         <div class="form-row">
           <label class="field">
             <span>Your name</span>
@@ -282,23 +310,13 @@
             <line x1="22" y1="2" x2="11" y2="13"/>
             <polygon points="22 2 15 22 11 13 2 9 22 2"/>
           </svg>
-          Send it over
+          <span class="contact-submit-label">Send it over</span>
         </button>
 
         <p class="form-success" hidden>✨ Got it! We’ll be in touch within one business day.</p>
+        <p class="form-error"   hidden>Something went wrong sending that. Please try again, or email <a href="mailto:info@embersurrogacy.com">info@embersurrogacy.com</a>.</p>
       </form>
 
-    </div>
-  </section>
-
-  <!-- ============ FINAL CTA ============ -->
-  <section class="final-cta">
-    <div class="final-cta-inner">
-      <img src="svg/sprig.svg"  alt="" class="cta-cartoon l">
-      <img src="svg/flower.svg" alt="" class="cta-cartoon r">
-      <h2>Ready to grow?</h2>
-      <p>Let’s learn more about where you are, where you want to be, and what it would take to get there.</p>
-      <a href="mailto:hello@ember.example" class="btn btn-secondary">Book a Call</a>
     </div>
   </section>
 
@@ -333,7 +351,7 @@
           <h4>Contact</h4>
           <ul>
             <li><a href="#contact">Book a call</a></li>
-            <li><a href="mailto:hello@ember.example">hello@ember.example</a></li>
+            <li><a href="mailto:info@embersurrogacy.com">info@embersurrogacy.com</a></li>
           </ul>
         </div>
       </div>
@@ -359,6 +377,78 @@
           toggle.setAttribute('aria-expanded', 'false');
         });
       });
+
+      // Contact form: AJAX submit to Static Forms.
+      // Falls back to native form POST if JS fails.
+      const form = document.querySelector('.contact-form');
+      if (form) {
+        const endpoint  = form.action;
+        const submitBtn = form.querySelector('.contact-submit');
+        const labelEl   = form.querySelector('.contact-submit-label');
+        const successEl = form.querySelector('.form-success');
+        const errorEl   = form.querySelector('.form-error');
+        const labelText = labelEl ? labelEl.textContent : '';
+
+        form.addEventListener('submit', async (e) => {
+          // honeypot trip — silently succeed
+          if (form.honeypot && form.honeypot.value) { e.preventDefault(); return; }
+
+          e.preventDefault();
+          successEl.hidden = true;
+          errorEl.hidden   = true;
+          submitBtn.disabled = true;
+          if (labelEl) labelEl.textContent = 'Sending…';
+
+          const fd = new FormData(form);
+          const name     = (fd.get('name')     || '').toString().trim();
+          const email    = (fd.get('email')    || '').toString().trim();
+          const agency   = (fd.get('agency')   || '').toString().trim();
+          const interest = (fd.get('interest') || '').toString().trim();
+          const msg      = (fd.get('message')  || '').toString().trim();
+
+          const composed =
+            `Name: ${name}\n` +
+            `Email: ${email}\n` +
+            `Agency: ${agency || '—'}\n` +
+            `Interest: ${interest || '—'}\n\n` +
+            `Message:\n${msg || '—'}`;
+
+          const payload = {
+            apiKey:  fd.get('apiKey'),
+            subject: fd.get('subject'),
+            name,
+            email,
+            replyTo: email,
+            message: composed
+          };
+
+          try {
+            const res = await fetch(endpoint, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+
+            let ok = res.ok;
+            try {
+              const data = await res.json();
+              if (data && (data.success === false || data.error)) ok = false;
+            } catch { /* non-JSON response, trust the status code */ }
+
+            if (ok) {
+              successEl.hidden = false;
+              form.reset();
+            } else {
+              errorEl.hidden = false;
+            }
+          } catch (err) {
+            errorEl.hidden = false;
+          } finally {
+            submitBtn.disabled = false;
+            if (labelEl) labelEl.textContent = labelText;
+          }
+        });
+      }
     })();
   </script>
 </body>
