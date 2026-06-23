@@ -94,7 +94,7 @@
         team the tech to manage every case without losing your mind.
       </p>
       <div class="hero-cta">
-        <a href="#approach" class="btn btn-ghost">See How We Work</a>
+        <a href="#feature-surrogates" class="btn btn-ghost">See How We Work</a>
       </div>
     </div>
   </section>
@@ -207,8 +207,8 @@
         </div>
 
         <label class="field">
-          <span>Business</span>
-          <input type="text" name="Company" placeholder="Your Company Name">
+          <span>Company</span>
+          <input type="text" name="company" placeholder="Your Company Name">
         </label>
 
         <label class="field">
@@ -314,14 +314,14 @@
           const fd = new FormData(form);
           const name     = (fd.get('name')     || '').toString().trim();
           const email    = (fd.get('email')    || '').toString().trim();
-          const agency   = (fd.get('agency')   || '').toString().trim();
+          const company  = (fd.get('company')  || '').toString().trim();
           const interest = (fd.get('interest') || '').toString().trim();
           const msg      = (fd.get('message')  || '').toString().trim();
 
           const composed =
             `Name: ${name}\n` +
             `Email: ${email}\n` +
-            `Agency: ${agency || '—'}\n` +
+            `Company: ${company || '—'}\n` +
             `Interest: ${interest || '—'}\n\n` +
             `Message:\n${msg || '—'}`;
 
