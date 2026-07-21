@@ -6,23 +6,15 @@
 <title>Ember | Premium Surrogacy Agency</title>
 <meta name="description" content="Ember is a premium surrogacy agency offering bespoke, deeply personal journeys for intended parents and surrogates.">
 
-<!-- Meta Pixel Code -->
+<!-- Google tag (gtag.js) - GA4 with SPA support -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BVRBX1FZB1"></script>
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '3579174918924757');
-fbq('track', 'PageView');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BVRBX1FZB1', { send_page_view: false });
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=3579174918924757&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+<!-- End GA4 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -324,7 +316,6 @@ details p{padding-top:1rem;color:var(--espresso-soft);font-size:.95rem;max-width
 
 /* ---------- Surrogate quiz ---------- */
 .quiz{position:relative;max-width:600px;margin:0 auto}
-.hp{position:absolute!important;left:-9999px;opacity:0;pointer-events:none;height:0}
 .quiz-progress{height:4px;background:rgba(59,38,32,.12);border-radius:3px;overflow:hidden;margin-bottom:1rem}
 .quiz-progress-bar{height:100%;width:0;background:var(--ember);border-radius:3px;transition:width .4s ease}
 .quiz-count{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--espresso-soft);font-weight:500;margin-bottom:2.4rem;min-height:1rem}
@@ -891,7 +882,6 @@ footer{background:#2A1B15;color:rgba(250,243,234,.72);padding:5rem 0 2.5rem;font
       <form id="quizForm" class="quiz" action="https://api.staticforms.dev/submit" method="POST" novalidate>
         <input type="hidden" name="apiKey" value="sf_3a6157e080d62e9879505751">
         <input type="hidden" name="subject" value="Ember Surrogate Application">
-        <input type="text" name="honeypot" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <!-- hidden fields hold each answer for submission -->
         <input type="hidden" name="Age" data-answer id="a-age">
@@ -1155,7 +1145,6 @@ footer{background:#2A1B15;color:rgba(250,243,234,.72);padding:5rem 0 2.5rem;font
           <form id="contactForm" action="https://api.staticforms.dev/submit" method="POST" novalidate>
             <input type="hidden" name="apiKey" value="sf_3a6157e080d62e9879505751">
             <input type="hidden" name="subject" value="Ember Intended Parent Inquiry">
-            <input type="text" name="honeypot" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div id="formFields">
               <div class="field">
                 <label for="f-interest">I'm interested in</label>
@@ -1247,6 +1236,146 @@ footer{background:#2A1B15;color:rgba(250,243,234,.72);padding:5rem 0 2.5rem;font
 </footer>
 
 <script>
+/* ---------- UTM Tracking: persist across #/ navigation + include in submissions ---------- */
+(function(){
+  const UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id','gclid','fbclid','msclkid','gbraid','wbraid','fbadid'];
+  const STORAGE_KEY = 'ember_utms_v1';
+
+  function parseCurrentUTMs(){
+    const out = {};
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.forEach((v,k) => { if(UTM_KEYS.includes(k)) out[k]=v; });
+
+    // your router uses #/page?utm_source=... -> UTMs are in location.hash
+    const hash = window.location.hash || '';
+    const qIdx = hash.indexOf('?');
+    if(qIdx !== -1){
+      const hashQuery = hash.slice(qIdx+1);
+      try {
+        new URLSearchParams(hashQuery).forEach((v,k) => { if(UTM_KEYS.includes(k)) out[k]=v; });
+      } catch(e){}
+    }
+    return out;
+  }
+
+  function loadStored(){
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY) || localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch(e){ return {}; }
+  }
+
+  function saveStored(obj){
+    try {
+      const str = JSON.stringify(obj);
+      sessionStorage.setItem(STORAGE_KEY, str);
+      localStorage.setItem(STORAGE_KEY, str);
+    } catch(e){}
+  }
+
+  function capture(){
+    const current = parseCurrentUTMs();
+    const hasCurrent = Object.keys(current).length > 0;
+    const existing = loadStored();
+
+    if(!hasCurrent && Object.keys(existing).length) return existing;
+
+    if(hasCurrent){
+      const merged = { ...existing, ...current };
+      if(!existing._first_landing){
+        merged._first_landing = window.location.href;
+        merged._first_referrer = document.referrer || '(direct)';
+        merged._first_seen = new Date().toISOString();
+      }
+      saveStored(merged);
+      return merged;
+    }
+    return existing;
+  }
+
+  function get(){
+    return loadStored() || {};
+  }
+
+  function formatForMessage(obj){
+    // Nicely formatted for email readability
+    const labelMap = {
+      utm_source: 'Source',
+      utm_medium: 'Medium',
+      utm_campaign: 'Campaign',
+      utm_term: 'Term',
+      utm_content: 'Content',
+      utm_id: 'Campaign ID',
+      gclid: 'Google Click ID',
+      fbclid: 'Facebook Click ID',
+      msclkid: 'Microsoft Click ID',
+      _first_landing: 'Landing Page',
+      _first_referrer: 'Referrer',
+      _first_seen: 'First Seen'
+    };
+    const lines = [];
+    // main UTMs first in nice order
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id','gclid','fbclid','msclkid'].forEach(k => {
+      if(obj[k]) lines.push(`${labelMap[k] || k}: ${obj[k]}`);
+    });
+    // context
+    if(obj._first_landing) lines.push(`Landing Page: ${obj._first_landing}`);
+    if(obj._first_referrer) lines.push(`Referrer: ${obj._first_referrer}`);
+    if(obj._first_seen) lines.push(`First Seen: ${obj._first_seen}`);
+    // any leftover custom keys
+    Object.entries(obj).forEach(([k,v]) => {
+      if(!labelMap[k] && !['_first_landing','_first_referrer','_first_seen','landing_page'].includes(k) && !k.startsWith('utm_') && !['gclid','fbclid','msclkid'].includes(k)){
+        // skip internal unless it's useful
+        if(!k.startsWith('_')) lines.push(`${k}: ${v}`);
+      }
+    });
+    // raw for debugging
+    if(lines.length){
+      const raw = Object.entries(obj).filter(([k])=>k.startsWith('utm_')).map(([k,v])=>`${k}=${v}`).join('&');
+      if(raw) lines.push('', `Raw: ${raw}`);
+    }
+    return lines.join('\n');
+  }
+
+  function injectHiddenInputs(){
+    const utms = get();
+    if(!Object.keys(utms).length) return;
+    ['contactForm','quizForm'].forEach(id => {
+      const form = document.getElementById(id);
+      if(!form) return;
+      Object.entries(utms).forEach(([k,v]) => {
+        let input = form.querySelector('input[name="'+k+'"][data-utm]');
+        if(!input){
+          input = document.createElement('input');
+          input.type='hidden'; input.name=k; input.setAttribute('data-utm','1');
+          form.appendChild(input);
+        }
+        input.value=v;
+      });
+    });
+  }
+
+  // capture on load
+  const initial = capture();
+  if(Object.keys(initial).length){
+    initial.landing_page = initial._first_landing || window.location.href;
+  }
+
+  // re-capture on any navigation (hashchange + popstate)
+  window.addEventListener('hashchange', () => { capture(); injectHiddenInputs(); });
+  window.addEventListener('popstate', () => { capture(); injectHiddenInputs(); });
+
+  // expose globally for form handlers
+  window.EmberUTMs = { get, formatForMessage, capture, injectHiddenInputs, loadStored };
+
+  // inject on DOM ready
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', injectHiddenInputs);
+  } else {
+    injectHiddenInputs();
+  }
+})();
+
 /* ---------- Simple hash router ---------- */
 const pages = document.querySelectorAll('.page');
 const navItems = document.querySelectorAll('[data-nav]');
@@ -1260,16 +1389,22 @@ function route(){
   // close mobile menu on navigation
   links.classList.remove('open');
   toggle.setAttribute('aria-expanded','false');
+
+  // GA4 SPA page_view - hash router needs manual tracking
+  if(window.gtag){
+    try {
+      const utms = window.EmberUTMs ? window.EmberUTMs.get() : {};
+      gtag('event', 'page_view', {
+        page_path: '/#/' + target,
+        page_location: window.location.href,
+        page_title: document.title + ' - ' + target,
+        ...utms
+      });
+      window.EmberLog && window.EmberLog('GA4 page_view', { path: '/#/'+target, utms });
+    } catch(e){}
+  }
 }
 window.addEventListener('hashchange', route);
-
-/* ---------- Meta Pixel: track in-app navigation as page views ----------
-   The base code (in <head>) fires PageView on first load. Because this is a
-   single-page app, subsequent navigation only changes the hash, so we fire a
-   PageView on each hashchange too. */
-window.addEventListener('hashchange', () => {
-  if(window.fbq) fbq('track', 'PageView');
-});
 
 /* ---------- Mobile menu ---------- */
 const toggle = document.getElementById('menuToggle');
@@ -1279,10 +1414,36 @@ toggle.addEventListener('click', () => {
   toggle.setAttribute('aria-expanded', open);
 });
 
+/* ---------- Debug helper for Staticforms ---------- */
+(function(){
+  const isDebug = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.search.includes('debug=1') || location.hash.includes('debug');
+  function ensureDebugBox(){
+    if(document.getElementById('ember-debug')) return document.getElementById('ember-debug');
+    const box = document.createElement('div');
+    box.id='ember-debug';
+    box.style.cssText='position:fixed;bottom:12px;right:12px;z-index:9999;background:#2A1B15;color:#FAF3EA;padding:12px 14px;border-radius:10px;font-family:monospace;font-size:11px;line-height:1.4;max-width:360px;max-height:50vh;overflow:auto;box-shadow:0 12px 32px rgba(0,0,0,.35);display:none;white-space:pre-wrap;word-break:break-word;';
+    document.body.appendChild(box);
+    return box;
+  }
+  window.EmberLog = function(...args){
+    console.log('[Ember]', ...args);
+    if(isDebug){
+      const box = ensureDebugBox();
+      box.style.display='block';
+      const line = args.map(a=> typeof a==='object' ? JSON.stringify(a,null,2) : String(a)).join(' ');
+      box.textContent += line + '\n---\n';
+    }
+  };
+})();
+
 /* ---------- Contact form (Intended Parents → Staticforms) ---------- */
 (function(){
   const form = document.getElementById('contactForm');
-  if(!form) return;
+  if(!form){
+    console.warn('[Ember] contactForm not found');
+    return;
+  }
+  console.log('[Ember] contactForm handler attached, action=', form.action);
   const fields  = document.getElementById('formFields');
   const success = document.getElementById('formSuccess');
   const errEl   = document.getElementById('contactErr');
@@ -1296,7 +1457,10 @@ toggle.addEventListener('click', () => {
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    if(form.honeypot && form.honeypot.value){ showSuccess(); return; }   // silent honeypot
+    window.EmberLog('Contact form submit event fired');
+
+    try { localStorage.setItem('ember_last_contact_attempt', JSON.stringify({ at: new Date().toISOString() })); } catch(e){}
+
     if(errEl) errEl.textContent = '';
 
     const fd       = new FormData(form);
@@ -1305,26 +1469,54 @@ toggle.addEventListener('click', () => {
     const interest = (fd.get('interest') || '').toString().trim();
     const msg      = (fd.get('message')  || '').toString().trim();
 
-    if(!name){ if(errEl) errEl.textContent = 'Please enter your name.'; return; }
-    if(!emailRe.test(email)){ if(errEl) errEl.textContent = 'Please enter a valid email.'; return; }
+    window.EmberLog('Form values', { name: !!name, email, interest, msgLen: msg.length, emailValid: emailRe.test(email) });
+
+    if(!name){ if(errEl) errEl.textContent = 'Please enter your name.'; window.EmberLog('Validation failed: name'); return; }
+    if(!emailRe.test(email)){ if(errEl) errEl.textContent = 'Please enter a valid email.'; window.EmberLog('Validation failed: email', email); return; }
 
     if(btn){ btn.disabled = true; btn.textContent = 'Sending…'; }
+
+    let utmText = '';
+    try {
+      const utms = window.EmberUTMs ? window.EmberUTMs.get() : {};
+      if(Object.keys(utms).length){
+        utmText = '\n\n----------------------------------------\nMARKETING ATTRIBUTION\n----------------------------------------\n' + window.EmberUTMs.formatForMessage(utms);
+      }
+    } catch(e){}
 
     const composed = 'Intended Parent Inquiry\n\n' +
       'Name: ' + name + '\n' +
       'Email: ' + email + '\n' +
       'Interest: ' + (interest || '—') + '\n\n' +
-      'Message:\n' + (msg || '—');
+      'Message:\n' + (msg || '—') + utmText;
+
     const payload = { apiKey: fd.get('apiKey'), subject: fd.get('subject'), name, email, replyTo: email, message: composed };
 
+    try { localStorage.setItem('ember_last_contact_submission', JSON.stringify({ at: new Date().toISOString(), payload })); } catch(e){}
+    window.EmberLog('Contact form submitting', { action: form.action, payload, utms: window.EmberUTMs ? window.EmberUTMs.get() : {} });
+
     try {
-      await fetch(form.action, {
+      const res = await fetch(form.action, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       });
-    } catch(err) { /* show success regardless — template */ }
-    if(window.fbq) fbq('track', 'Lead', { content_name: 'Intended Parent Inquiry' });   // Meta Pixel conversion (intended parent)
+      const text = await res.text();
+      let data;
+      try { data = JSON.parse(text); } catch(e){ data = text; }
+      window.EmberLog('Staticforms response', { status: res.status, ok: res.ok, data, text: text.slice(0,500) });
+      console.log('[Ember] Full response text:', text);
+      localStorage.setItem('ember_last_contact_response', JSON.stringify({ at: new Date().toISOString(), status: res.status, data }));
+      if(!res.ok){
+        if(errEl) errEl.textContent = 'Submit returned ' + res.status + ': ' + (typeof data==='string' ? data : JSON.stringify(data)).slice(0,200);
+        throw new Error('Staticforms error ' + res.status + ' ' + text);
+      }
+    } catch(err) {
+      window.EmberLog('Staticforms submit FAILED', err.message || err);
+      console.error('[Ember] Staticforms submit failed — check domain whitelist & API key. Is localhost whitelisted?', err);
+      if(errEl && !errEl.textContent) errEl.textContent = 'Network error — check console. The demo will still show success.';
+      // still show success to user so UX isn't broken during template mode
+    }
     showSuccess();
   });
 })();
@@ -1332,7 +1524,11 @@ toggle.addEventListener('click', () => {
 /* ---------- Surrogate quiz (branching) ---------- */
 (function(){
   const form = document.getElementById('quizForm');
-  if(!form) return;
+  if(!form){
+    console.warn('[Ember] quizForm not found');
+    return;
+  }
+  console.log('[Ember] quizForm handler attached, action=', form.action);
   const bar      = document.getElementById('quizBar');
   const count    = document.getElementById('quizCount');
   const back     = document.getElementById('quizBack');
@@ -1355,7 +1551,7 @@ toggle.addEventListener('click', () => {
     if(count) count.textContent = (of && type !== 'success' && type !== 'review') ? ('Step ' + step + ' of ' + of) : '';
     if(back)  back.hidden = (history.length === 0 || type === 'success');
     if(type === 'review') buildReview();
-    const fld = el.querySelector('input:not(.hp), textarea');
+    const fld = el.querySelector('input, textarea');
     if(fld) setTimeout(() => fld.focus(), 60);
   }
   function goTo(id){ const t = byId(id); if(!t) return; if(current) history.push(current.dataset.id); render(t); }
@@ -1379,7 +1575,7 @@ toggle.addEventListener('click', () => {
 
   /* validate a slide's text field; returns true if OK */
   function validateSlide(slide){
-    const fld = slide.querySelector('input:not(.hp), textarea');
+    const fld = slide.querySelector('input, textarea');
     const err = slide.querySelector('.q-err');
     if(err) err.textContent = '';
     if(!fld) return true;
@@ -1399,7 +1595,7 @@ toggle.addEventListener('click', () => {
   });
 
   /* Enter advances text inputs (not textarea) */
-  form.querySelectorAll('input:not(.hp)').forEach(inp => {
+  form.querySelectorAll('input').forEach(inp => {
     inp.addEventListener('keydown', e => {
       if(e.key === 'Enter'){ e.preventDefault(); const nb = inp.closest('[data-slide]').querySelector('.q-next'); if(nb) nb.click(); }
     });
@@ -1425,7 +1621,7 @@ toggle.addEventListener('click', () => {
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    if(form.honeypot && form.honeypot.value){ showSuccess(); return; }   // silent honeypot
+    window.EmberLog('Surrogate form submit event fired');
     const btn = form.querySelector('.q-submit');
     if(btn){ btn.disabled = true; btn.textContent = 'Sending…'; }
 
@@ -1442,16 +1638,36 @@ toggle.addEventListener('click', () => {
     });
     if(flagged) composed += '\nNote: one or more answers may fall outside the typical requirements.';
 
+    try {
+      const utms = window.EmberUTMs ? window.EmberUTMs.get() : {};
+      if(Object.keys(utms).length){
+        composed += '\n\n----------------------------------------\nMARKETING ATTRIBUTION\n----------------------------------------\n' + window.EmberUTMs.formatForMessage(utms);
+      }
+    } catch(e){}
+
+    // Minimal payload — keep UTMs in message body only
     const payload = { apiKey: fd.get('apiKey'), subject: fd.get('subject'), name, email, replyTo: email, message: composed };
 
+    try { localStorage.setItem('ember_last_surrogate_submission', JSON.stringify({ at: new Date().toISOString(), payload })); } catch(e){}
+    window.EmberLog('Surrogate form submitting', { action: form.action, payload, utms: window.EmberUTMs ? window.EmberUTMs.get() : {} });
+
     try {
-      await fetch(form.action, {
+      const res = await fetch(form.action, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       });
-    } catch(err) { /* show success regardless — template */ }
-    if(window.fbq) fbq('track', 'SubmitApplication', { content_name: 'Surrogate Application' });   // Meta Pixel conversion (surrogate)
+      const text = await res.text();
+      let data;
+      try { data = JSON.parse(text); } catch(e){ data = text; }
+      window.EmberLog('Staticforms response (surrogate)', { status: res.status, ok: res.ok, data });
+      console.log('[Ember] Full response text:', text);
+      localStorage.setItem('ember_last_surrogate_response', JSON.stringify({ at: new Date().toISOString(), status: res.status, data }));
+      if(!res.ok) throw new Error('Staticforms error ' + res.status + ' ' + text);
+    } catch(err) {
+      window.EmberLog('Staticforms submit FAILED (surrogate)', err.message || err);
+      console.error('[Ember] Staticforms submit failed — check domain whitelist & API key', err);
+    }
     showSuccess();
   });
 
