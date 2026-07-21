@@ -46,10 +46,24 @@ First Seen: 2026-07-21T15:13:37.062Z
 Raw: utm_source=linkedin&utm_medium=social&utm_campaign=test_q3
 ```
 
-### UTM Based Links - TODO
-* question - should there be more broken down links/greater detail of sources?
+### UTM Based Links
 
-Instagram:
-Facebook:
-Google:
-LinkedIn:
+Full detailed guide with copy-paste links for every channel (Instagram, Facebook, Google, LinkedIn, Newsletter, Podcast, Referral Partners, QR Codes, A/B testing):
+
+👉 **[See UTM_GUIDE.md](./UTM_GUIDE.md)**
+
+**Quick examples:**
+
+```
+# Instagram feed -> Parents
+https://embersurrogacy.com/#/parents?utm_source=instagram&utm_medium=social&utm_campaign=parents_q3_2026&utm_content=feed_carousel_v1
+
+# LinkedIn founder post
+https://embersurrogacy.com/#/parents?utm_source=linkedin&utm_medium=social&utm_campaign=parents_q3_2026&utm_content=founder_post_july_era_v2
+
+# Google Ads -> Surrogate quiz
+https://embersurrogacy.com/#/apply?utm_source=google&utm_medium=cpc&utm_campaign=surrogates_q3_search&utm_term=become+a+surrogate&utm_content=rsa_headline_pay_comp
+
+# IVF clinic QR card
+https://embersurrogacy.com/#/contact?utm_source=ccrm&utm_medium=referral&utm_campaign=ivf_referral_q3_2026&utm_content=qr_lobby_card
+```
