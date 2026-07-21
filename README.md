@@ -1,11 +1,16 @@
 # Ember Surrogacy Website
 [embersurrogacy.com](https://embersurrogacy.com/)
 
-# Testing
+# Testing + Health Monitoring
 ### E2E Testing
 1. Test that the form submission results in StaticForms submission
 2. Test that the UTM parameters are included in the form submission email
 3. Test that the Meta Pixel fires on form submission
+
+
+### Monitoring
+1. View Google Analytics dashboards for traffic
+2. Check that Static Forms is not categorizing things into Spam
 
 # UTM Parameters for Tracking Lead Source
 UTM parameters are tracked across navigation (hash router `#/home`, `#/contact`, `#/apply`) and included in Staticforms email submissions for lead attribution, and also for analytics using GA4.
