@@ -1,6 +1,12 @@
 # Ember Surrogacy Website
 [embersurrogacy.com](https://embersurrogacy.com/)
 
+# Testing
+### E2E Testing
+1. Test that the form submission results in StaticForms submission
+2. Test that the UTM parameters are included in the form submission email
+3. Test that the Meta Pixel fires on form submission
+
 # UTM Parameters for Tracking Lead Source
 UTM parameters are tracked across navigation (hash router `#/home`, `#/contact`, `#/apply`) and included in Staticforms email submissions for lead attribution, and also for analytics using GA4.
 
@@ -34,3 +40,11 @@ First Seen: 2026-07-21T15:13:37.062Z
 
 Raw: utm_source=linkedin&utm_medium=social&utm_campaign=test_q3
 ```
+
+### UTM Based Links - TODO
+* question - should there be more broken down links/greater detail of sources?
+
+Instagram:
+Facebook:
+Google:
+LinkedIn:
