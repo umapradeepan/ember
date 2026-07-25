@@ -3,8 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ember | A Premium Surrogacy Agency</title>
-<meta name="description" content="Ember is a premium surrogacy agency offering bespoke, deeply personal journeys for intended parents and surrogates.">
+<title>Ember - A Premium Surrogacy Agency</title>
+<meta name="description" content="A premium surrogacy agency supporting intended parents and surrogates with intention and transparency.">
+<link rel="canonical" href="https://embersurrogacy.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ember Surrogacy">
+<meta property="og:url" content="https://embersurrogacy.com/">
+<meta property="og:title" content="Ember - Premium Surrogacy Agency">
+<meta property="og:description" content="A premium surrogacy agency supporting intended parents and surrogates with intention and transparency.">
+<meta property="og:image" content="https://embersurrogacy.com/apple-touch-icon.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://embersurrogacy.com/">
+<meta name="twitter:title" content="Ember - Premium Surrogacy Agency">
+<meta name="twitter:description" content="A premium surrogacy agency supporting intended parents and surrogates with intention and transparency.">
+<meta name="twitter:image" content="https://embersurrogacy.com/apple-touch-icon.png">
+
+<!-- Google tag (gtag.js) - GA4 with SPA support -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BVRBX1FZB1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BVRBX1FZB1'); // send_page_view:true default so GA4 checker sees activity
+</script>
+
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@1,500&family=Albert+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -480,7 +510,7 @@ footer{background:#2A1B15;color:rgba(250,243,234,.72);padding:5rem 0 2.5rem;font
   <section class="hero" style="padding-top:clamp(4rem,8vw,7rem)">
     <div class="hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">Ember is a Premium Surrogacy Agency</span>
+        <span class="eyebrow">Ember is a premium surrogacy agency</span>
         <h1>Every family begins with a <em class="lux">promise kept.</em></h1>
         <p class="lede">Ember is a full-service surrogacy agency dedicated to guiding intended parents and surrogates through deeply personal journeys, with the highest standard of professional, ethical, and personal support the moment deserves.</p>
         <div class="hero-ctas">
@@ -981,35 +1011,40 @@ footer{background:#2A1B15;color:rgba(250,243,234,.72);padding:5rem 0 2.5rem;font
           <p style="margin-bottom:.6rem"><strong>Partnering with</strong><br>US based surrogates</p>
         </div>
         <div class="form-card">
-          <div id="formFields">
-            <div class="field">
-              <label for="f-interest">I'm interested in</label>
-              <select id="f-interest">
-                <option value="" disabled selected>Select one…</option>
-                <option>Becoming a parent</option>
-                <option>Something else</option>
-              </select>
-              <p class="field-hint">Interested in becoming a surrogate? <a href="#/apply" data-route>Start with our quick eligibility quiz.</a></p>
+          <form id="contactForm" action="https://api.staticforms.dev/submit" method="POST" novalidate>
+            <input type="hidden" name="apiKey" value="sf_3a6157e080d62e9879505751">
+            <input type="hidden" name="subject" value="Ember Intended Parent Inquiry">
+            <div id="formFields">
+              <div class="field">
+                <label for="f-interest">I'm interested in</label>
+                <select id="f-interest" name="interest">
+                  <option value="" disabled selected>Select one…</option>
+                  <option>Becoming a parent</option>
+                  <option>Something else</option>
+                </select>
+                <p class="field-hint">Interested in becoming a surrogate? <a href="#/apply" data-route>Start with our quick eligibility quiz.</a></p>
+              </div>
+              <div class="field">
+                <label for="f-name">Full name</label>
+                <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="Your name">
+              </div>
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+              </div>
+              <div class="field">
+                <label for="f-message">Anything you'd like us to know? <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+                <textarea id="f-message" name="message" rows="4" placeholder="Share as much or as little as you like"></textarea>
+              </div>
+              <button type="submit" class="btn btn-ember" id="formSubmit" style="width:100%">Send Message</button>
+              <p id="contactErr" aria-live="polite" style="margin-top:.8rem;color:var(--ember);font-size:.85rem"></p>
+              <p class="form-note">Your information is kept strictly confidential and never shared. This form is for general informational purposes and does not constitute medical or legal advice. By submitting, you agree to our <a href="#/privacy" data-route>Privacy Policy</a>.</p>
             </div>
-            <div class="field">
-              <label for="f-name">Full name</label>
-              <input id="f-name" type="text" autocomplete="name" placeholder="Your name">
+            <div class="form-success" id="formSuccess">
+              <h3>Thank you.</h3>
+              <p>A member of our team will be in touch within 1-3 business days.</p>
             </div>
-            <div class="field">
-              <label for="f-email">Email</label>
-              <input id="f-email" type="email" autocomplete="email" placeholder="you@example.com">
-            </div>
-            <div class="field">
-              <label for="f-message">Anything you'd like us to know? <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
-              <textarea id="f-message" rows="4" placeholder="Share as much or as little as you like"></textarea>
-            </div>
-            <button class="btn btn-ember" id="formSubmit" style="width:100%">Send Message</button>
-            <p class="form-note">Your information is kept strictly confidential and never shared. This form is for general informational purposes and does not constitute medical or legal advice. By submitting, you agree to our <a href="#/privacy" data-route>Privacy Policy</a>.</p>
-          </div>
-          <div class="form-success" id="formSuccess">
-            <h3>Thank you.</h3>
-            <p>A member of our team will be in touch within 1-3 business days.</p>
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -1276,6 +1311,10 @@ function route(){
     const intent = new URLSearchParams(query || '').get('i');
     document.getElementById('formFields').style.display = '';
     document.getElementById('formSuccess').style.display = 'none';
+    const cBtn = document.getElementById('formSubmit');
+    if(cBtn){ cBtn.disabled = false; cBtn.textContent = 'Send Message'; }
+    const cErr = document.getElementById('contactErr');
+    if(cErr) cErr.textContent = '';
     if(intent === 'surrogate'){ location.hash = '#/apply'; return; }
     if(intent === 'parent') sel.value = 'Becoming a parent';
     else sel.selectedIndex = 0; // blank placeholder, nothing pre-selected
@@ -1293,11 +1332,253 @@ toggle.addEventListener('click', () => {
   toggle.setAttribute('aria-expanded', open);
 });
 
-/* ---------- Contact form (demo) ---------- */
-document.getElementById('formSubmit').addEventListener('click', () => {
-  document.getElementById('formFields').style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
+/* ---------- Debug helper for Staticforms ---------- */
+(function(){
+  const isDebug = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.search.includes('debug=1') || location.hash.includes('debug');
+  function ensureDebugBox(){
+    if(document.getElementById('ember-debug')) return document.getElementById('ember-debug');
+    const box = document.createElement('div');
+    box.id='ember-debug';
+    box.style.cssText='position:fixed;bottom:12px;right:12px;z-index:9999;background:#2A1B15;color:#FAF3EA;padding:12px 14px;border-radius:10px;font-family:monospace;font-size:11px;line-height:1.4;max-width:360px;max-height:50vh;overflow:auto;box-shadow:0 12px 32px rgba(0,0,0,.35);display:none;white-space:pre-wrap;word-break:break-word;';
+    document.body.appendChild(box);
+    return box;
+  }
+  window.EmberLog = function(...args){
+    console.log('[Ember]', ...args);
+    if(isDebug){
+      const box = ensureDebugBox();
+      box.style.display='block';
+      const line = args.map(a=> typeof a==='object' ? JSON.stringify(a,null,2) : String(a)).join(' ');
+      box.textContent += line + '\n---\n';
+    }
+  };
+})();
+
+/* ---------- UTM Tracking: persist across #/ navigation + include in submissions ---------- */
+(function(){
+  const UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id','gclid','fbclid','msclkid','gbraid','wbraid','fbadid'];
+  const STORAGE_KEY = 'ember_utms_v1';
+
+  function parseCurrentUTMs(){
+    const out = {};
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.forEach((v,k) => { if(UTM_KEYS.includes(k)) out[k]=v; });
+
+    // your router uses #/page?utm_source=... -> UTMs are in location.hash
+    const hash = window.location.hash || '';
+    const qIdx = hash.indexOf('?');
+    if(qIdx !== -1){
+      const hashQuery = hash.slice(qIdx+1);
+      try {
+        new URLSearchParams(hashQuery).forEach((v,k) => { if(UTM_KEYS.includes(k)) out[k]=v; });
+      } catch(e){}
+    }
+    return out;
+  }
+
+  function loadStored(){
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY) || localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch(e){ return {}; }
+  }
+
+  function saveStored(obj){
+    try {
+      const str = JSON.stringify(obj);
+      sessionStorage.setItem(STORAGE_KEY, str);
+      localStorage.setItem(STORAGE_KEY, str);
+    } catch(e){}
+  }
+
+  function capture(){
+    const current = parseCurrentUTMs();
+    const hasCurrent = Object.keys(current).length > 0;
+    const existing = loadStored();
+
+    if(!hasCurrent && Object.keys(existing).length) return existing;
+
+    if(hasCurrent){
+      const merged = { ...existing, ...current };
+      if(!existing._first_landing){
+        merged._first_landing = window.location.href;
+        merged._first_referrer = document.referrer || '(direct)';
+        merged._first_seen = new Date().toISOString();
+      }
+      saveStored(merged);
+      return merged;
+    }
+    return existing;
+  }
+
+  function get(){
+    return loadStored() || {};
+  }
+
+  function formatForMessage(obj){
+    // Nicely formatted for email readability
+    const labelMap = {
+      utm_source: 'Source',
+      utm_medium: 'Medium',
+      utm_campaign: 'Campaign',
+      utm_term: 'Term',
+      utm_content: 'Content',
+      utm_id: 'Campaign ID',
+      gclid: 'Google Click ID',
+      fbclid: 'Facebook Click ID',
+      msclkid: 'Microsoft Click ID',
+      _first_landing: 'Landing Page',
+      _first_referrer: 'Referrer',
+      _first_seen: 'First Seen'
+    };
+    const lines = [];
+    // main UTMs first in nice order
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','utm_id','gclid','fbclid','msclkid'].forEach(k => {
+      if(obj[k]) lines.push(`${labelMap[k] || k}: ${obj[k]}`);
+    });
+    // context
+    if(obj._first_landing) lines.push(`Landing Page: ${obj._first_landing}`);
+    if(obj._first_referrer) lines.push(`Referrer: ${obj._first_referrer}`);
+    if(obj._first_seen) lines.push(`First Seen: ${obj._first_seen}`);
+    // any leftover custom keys
+    Object.entries(obj).forEach(([k,v]) => {
+      if(!labelMap[k] && !['_first_landing','_first_referrer','_first_seen','landing_page'].includes(k) && !k.startsWith('utm_') && !['gclid','fbclid','msclkid'].includes(k)){
+        // skip internal unless it's useful
+        if(!k.startsWith('_')) lines.push(`${k}: ${v}`);
+      }
+    });
+    // raw for debugging
+    if(lines.length){
+      const raw = Object.entries(obj).filter(([k])=>k.startsWith('utm_')).map(([k,v])=>`${k}=${v}`).join('&');
+      if(raw) lines.push('', `Raw: ${raw}`);
+    }
+    return lines.join('\n');
+  }
+
+  function injectHiddenInputs(){
+    const utms = get();
+    if(!Object.keys(utms).length) return;
+    ['contactForm','quizForm'].forEach(id => {
+      const form = document.getElementById(id);
+      if(!form) return;
+      Object.entries(utms).forEach(([k,v]) => {
+        let input = form.querySelector('input[name="'+k+'"][data-utm]');
+        if(!input){
+          input = document.createElement('input');
+          input.type='hidden'; input.name=k; input.setAttribute('data-utm','1');
+          form.appendChild(input);
+        }
+        input.value=v;
+      });
+    });
+  }
+
+  // capture on load
+  const initial = capture();
+  if(Object.keys(initial).length){
+    initial.landing_page = initial._first_landing || window.location.href;
+  }
+
+  // re-capture on any navigation (hashchange + popstate)
+  window.addEventListener('hashchange', () => { capture(); injectHiddenInputs(); });
+  window.addEventListener('popstate', () => { capture(); injectHiddenInputs(); });
+
+  // expose globally for form handlers
+  window.EmberUTMs = { get, formatForMessage, capture, injectHiddenInputs, loadStored };
+
+  // inject on DOM ready
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', injectHiddenInputs);
+  } else {
+    injectHiddenInputs();
+  }
+})();
+
+/* ---------- GA4 SPA: manual page_view on hash navigation (first load auto-sent by gtag config) ---------- */
+window.addEventListener('hashchange', () => {
+  if(!window.gtag) return;
+  try {
+    const target = (location.hash.replace('#/','').split('?')[0]) || 'home';
+    const utms = window.EmberUTMs ? window.EmberUTMs.get() : {};
+    gtag('event', 'page_view', {
+      page_path: '/#/' + target,
+      page_location: window.location.href,
+      page_title: document.title + ' - ' + target,
+      ...utms
+    });
+    window.EmberLog && window.EmberLog('GA4 page_view (hash change)', { path: '/#/'+target, utms });
+  } catch(e){}
 });
+
+/* ---------- Contact form (Intended Parents → Staticforms) ---------- */
+(function(){
+  const form = document.getElementById('contactForm');
+  if(!form){ console.warn('[Ember] contactForm not found'); return; }
+  const fields  = document.getElementById('formFields');
+  const success = document.getElementById('formSuccess');
+  const errEl   = document.getElementById('contactErr');
+  const btn     = document.getElementById('formSubmit');
+  const emailRe = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+  const resetBtn = () => { if(btn){ btn.disabled = false; btn.textContent = 'Send Message'; } };
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    window.EmberLog && window.EmberLog('Contact form submit event fired');
+    if(errEl) errEl.textContent = '';
+
+    const fd       = new FormData(form);
+    const name     = (fd.get('name')     || '').toString().trim();
+    const email    = (fd.get('email')    || '').toString().trim();
+    const interest = (fd.get('interest') || '').toString().trim();
+    const msg      = (fd.get('message')  || '').toString().trim();
+
+    if(!name){ if(errEl) errEl.textContent = 'Please enter your name.'; return; }
+    if(!emailRe.test(email)){ if(errEl) errEl.textContent = 'Please enter a valid email.'; return; }
+
+    if(btn){ btn.disabled = true; btn.textContent = 'Sending…'; }
+
+    let utmText = '';
+    try {
+      const utms = window.EmberUTMs ? window.EmberUTMs.get() : {};
+      if(Object.keys(utms).length){
+        utmText = '\n\n----------------------------------------\nMARKETING ATTRIBUTION\n----------------------------------------\n' + window.EmberUTMs.formatForMessage(utms);
+      }
+    } catch(e){}
+
+    const composed = 'Intended Parent Inquiry\n\n' +
+      'Name: ' + name + '\n' +
+      'Email: ' + email + '\n' +
+      'Interest: ' + (interest || '—') + '\n\n' +
+      'Message:\n' + (msg || '—') + utmText;
+
+    const payload = { apiKey: fd.get('apiKey'), subject: fd.get('subject'), name, email, replyTo: email, message: composed };
+    window.EmberLog && window.EmberLog('Contact form submitting', { action: form.action, payload });
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const text = await res.text();
+      let data; try { data = JSON.parse(text); } catch(e){ data = text; }
+      window.EmberLog && window.EmberLog('Staticforms response', { status: res.status, ok: res.ok, data });
+      if(!res.ok){
+        if(errEl) errEl.textContent = 'Something went wrong. Please email info@embersurrogacy.com.';
+        resetBtn();
+        return;
+      }
+    } catch(err) {
+      console.error('[Ember] Staticforms submit failed — check domain whitelist & API key.', err);
+      if(errEl) errEl.textContent = 'Network error. Please try again or email info@embersurrogacy.com.';
+      resetBtn();
+      return;
+    }
+    if(fields)  fields.style.display  = 'none';
+    if(success) success.style.display = 'block';
+  });
+})();
 
 /* ---------- Surrogate eligibility quiz ---------- */
 (function(){
@@ -1392,8 +1673,42 @@ document.getElementById('formSubmit').addEventListener('click', () => {
     const consent = document.getElementById('quizConsent');
     const submit = document.getElementById('quizSubmit');
     consent.onchange = () => { submit.disabled = !consent.checked; };
-    submit.onclick = () => {
+    submit.onclick = async () => {
       if(!consent.checked) return;
+      submit.disabled = true; submit.textContent = 'Sending…';
+      const a = state.answers;
+      let utmText = '';
+      try {
+        const utms = window.EmberUTMs ? window.EmberUTMs.get() : {};
+        if(Object.keys(utms).length){
+          utmText = '\n\n----------------------------------------\nMARKETING ATTRIBUTION\n----------------------------------------\n' + window.EmberUTMs.formatForMessage(utms);
+        }
+      } catch(e){}
+      const composed = 'Surrogate Eligibility Application\n\n' +
+        'Name: ' + (a.name || '—') + '\n' +
+        'Email: ' + (a.email || '—') + '\n' +
+        'Phone: ' + (a.phone || '—') + '\n\n' +
+        'ELIGIBILITY ANSWERS\n----------------------------------------\n' +
+        Object.keys(labels).filter(k => !['name','email','phone'].includes(k) && a[k]).map(k => labels[k] + ': ' + a[k]).join('\n') +
+        utmText;
+      const payload = { apiKey: 'sf_3a6157e080d62e9879505751', subject: 'Ember Surrogate Application', name: a.name || '', email: a.email || '', replyTo: a.email || '', message: composed };
+      window.EmberLog && window.EmberLog('Quiz submitting', payload);
+      try {
+        const res = await fetch('https://api.staticforms.dev/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        window.EmberLog && window.EmberLog('Quiz staticforms response', { status: res.status, ok: res.ok });
+        if(!res.ok) throw new Error('status ' + res.status);
+      } catch(err) {
+        console.error('[Ember] Quiz submit failed', err);
+        submit.disabled = false; submit.textContent = 'Submit application';
+        let e = document.getElementById('quizErr');
+        if(!e){ e = document.createElement('p'); e.id='quizErr'; e.style.cssText='margin-top:.8rem;color:var(--ember);font-size:.85rem'; submit.parentNode.insertBefore(e, submit.nextSibling); }
+        e.textContent = 'Something went wrong. Please email info@embersurrogacy.com.';
+        return;
+      }
       card.style.display = 'none';
       success.style.display = '';
       window.scrollTo({top:0, behavior:'instant'});
