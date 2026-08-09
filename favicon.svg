@@ -1,8 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
-<!-- Ember cream favicon - cream leaf on espresso disc for SERP visibility -->
-<circle cx="60" cy="60" r="56" fill="#3B2620"/>
-<path d="M60.00,20.95 C50.00,3.95 25.00,3.95 18.00,28.95 C12.00,53.95 30.00,83.95 60.00,110.95 C90.00,83.95 108.00,53.95 102.00,28.95 C95.00,3.95 70.00,3.95 60.00,20.95 Z" fill="#FAF3EA"/>
-<path d="M60.00,24.95 C58.00,53.95 60.00,83.95 60.00,102.95 " fill="none" stroke="#3B2620" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-<path d="M60.00,44.95 C48.00,50.95 37.00,56.95 31.00,62.95 " fill="none" stroke="#3B2620" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-<path d="M60.00,44.95 C72.00,50.95 83.00,56.95 89.00,62.95 " fill="none" stroke="#3B2620" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Optically adjusted Ember mark for legibility at favicon sizes. -->
+  <circle cx="256" cy="256" r="256" fill="#3B2620"/>
+  <g transform="translate(75.104,35.114) scale(3.61791)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50,22 C40,5 15,5 8,30 C2,55 20,85 50,112 C80,85 98,55 92,30 C85,5 60,5 50,22 Z" stroke="#FAF3EA" stroke-width="10"/>
+    <path d="M50,22 C48,55 50,85 50,112" stroke="#FAF3EA" stroke-width="8.75"/>
+    <path d="M49.2,46.2 C37,52 23,58.5 12.4,64" stroke="#FAF3EA" stroke-width="8.75"/>
+    <path d="M49.2,46.2 C63,52 77,58.5 87.6,64" stroke="#FAF3EA" stroke-width="8.75"/>
+  </g>
 </svg>
